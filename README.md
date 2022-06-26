@@ -66,14 +66,24 @@ Your legals.
 </pre>
 
 
-## How to run
-run directly from command line
+## How to use
+To run in your code
 ```
-ruby tc.rb
+require 'tc'
+
+tc = TC.new(template, clauses, sections)
+text = tc.generate
+# ...
 ```
 
+Run directly from command line with
+```ruby tc.rb```
+
+## Testing
+To launch tests use
+```ruby tc_spec.rb```
 
 ## Todo
-- tests
+- more tests
 - command line helper separated from TC class
 - better documentation

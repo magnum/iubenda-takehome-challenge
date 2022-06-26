@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  File: README
+  
+    &mdash; Documentation by YARD 0.9.28
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "README";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="file_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: README</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><div id='filecontents'><h1 id="simplified-version-of-iubenda-tc-generator">Simplified version of iubenda T&amp;C Generator</h1>
+
+<h2 id="requirements">Requirements</h2>
+
+<p>The T&amp;C generator is a software which given:
+* A template
+* A dataset</p>
+
+<p>transforms the template into a Document expanding the template tags into their representation using
+the dataset. Below you can find more details.</p>
+
+<h2 id="template">Template</h2>
+<p>Is a text made of:
+* Plaintext
+* Tags</p>
+
+<h3 id="tags">Tags</h3>
+<p>The tags supported are:
+* Clauses: [CLAUSE-#ID]
+* Sections: A group of clauses, represented with [SECTION-#ID]</p>
+
+<h2 id="example">Example</h2>
+
+<p>Given the following template:</p>
+<pre class="code ruby"><code class="ruby">
+A T&amp;C Document
+
+This document &lt;b&gt;is&lt;/b&gt; made &lt;b&gt;of&lt;/b&gt; plaintext.
+&lt;b&gt;Is&lt;/b&gt; made &lt;b&gt;of&lt;/b&gt; [CLAUSE-3].
+&lt;b&gt;Is&lt;/b&gt; made &lt;b&gt;of&lt;/b&gt; [CLAUSE-4].
+&lt;b&gt;Is&lt;/b&gt; made &lt;b&gt;of&lt;/b&gt; [SECTION-1].
+Your legals.
+</code></pre>
+
+<p>And the following dataset:</p>
+
+<p>clauses:
+<code>
+[
+  { "id": 1, "text": "The quick brown fox" },
+  { "id": 2, "text": "jumps over the lazy dog" },
+  { "id": 3, "text": "And dies" },
+  { "id": 4, "text": "The white horse is white" }
+]
+</code></p>
+
+<p>sections:</p>
+
+<p><code>
+[
+  { "id": 1, "clauses_ids": [1, 2] }
+]
+</code></p>
+
+<p>Creates the following T&amp;C document:</p>
+<pre class="code ruby"><code class="ruby">
+A T&amp;C Document
+
+This document &lt;b&gt;is&lt;/b&gt; made &lt;b&gt;of&lt;/b&gt; plaintext.
+&lt;b&gt;Is&lt;/b&gt; made &lt;b&gt;of And&lt;/b&gt; dies.  
+&lt;b&gt;Is&lt;/b&gt; made &lt;b&gt;of&lt;/b&gt; The white horse &lt;b&gt;is&lt;/b&gt; white.
+&lt;b&gt;Is&lt;/b&gt; made &lt;b&gt;of&lt;/b&gt; The quick brown fox;jumps over the lazy dog.
+
+Your legals.
+</code></pre>
+
+<h2 id="how-to-use">How to use</h2>
+<p>To run in your code
+```
+require ‘tc’</p>
+
+<p>tc = TC.new(template, clauses, sections)
+text = tc.generate
+# …
+```</p>
+
+<p>Run directly from command line with
+<code>ruby tc.rb</code></p>
+
+<h2 id="testing">Testing</h2>
+<p>To launch tests use
+<code>ruby tc_spec.rb</code></p>
+
+<h2 id="todo">Todo</h2>
+<ul>
+  <li>more tests</li>
+  <li>command line helper separated from TC class</li>
+  <li>better documentation</li>
+</ul>
+</div></div>
+
+      <div id="footer">
+  Generated on Sun Jun 26 20:09:32 2022 by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.28 (ruby-3.1.0).
+</div>
+
+    </div>
+  </body>
+</html>

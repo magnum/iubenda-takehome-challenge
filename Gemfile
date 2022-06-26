@@ -1,6 +1,7 @@
 source 'https://rubygems.org/'
 
 group :test, :development do
+  gem 'yard'
   gem 'pry'
 end
 
